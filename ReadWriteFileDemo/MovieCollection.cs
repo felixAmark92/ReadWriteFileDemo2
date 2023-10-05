@@ -74,7 +74,118 @@ public class MovieCollection
                     Genres.SciFi,
                     Genres.Comedy
                 }
-            }
+            },
+            new ()
+            {
+                Title = "Barbie",
+                Description = "Ima barbie girl, in a babie world",
+                Length = 2.0,
+                Genres = new List<Genres>()
+                {
+                    Genres.Comedy,
+                    Genres.Fantasy,
+                }
+            },
+            new ()
+            {
+                Title = "The Godfather",
+                Description = "Maffia",
+                Length = 2.0,
+                Genres = new List<Genres>()
+                {
+                    Genres.Drama,
+                    Genres.Crime
+                }
+            },
+            new ()
+            {
+                Title = "Oppenheimer",
+                Description = "Oppenheimerstyle, bomb go boom!",
+                Length = 2.0,
+                Genres = new List<Genres>()
+                {
+                    Genres.Drama,
+                    Genres.Thriller
+                }
+            },
+            new ()
+            {
+                Title = "Interstellar",
+                Description = "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper,",
+                Length = 2.85,
+                Genres = new List<Genres>()
+                {
+                    Genres.SciFi,
+                    Genres.Drama
+                }
+            },
+            new ()
+            {
+                Title = "Fight Club",
+                Description = "People fight",
+                Length = 2.0,
+                Genres = new List<Genres>()
+                {
+                    Genres.Thriller,
+                    Genres.Drama
+                }
+            },
+            new ()
+            {
+                Title = "The Dark knight",
+                Description = "Batman fight",
+                Length = 2.0,
+                Genres = new List<Genres>()
+                {
+                    Genres.Action,
+                    Genres.Crime
+                }
+            },
+            new ()
+            {
+                Title = "Return of the king",
+                Description = "Frodo dont fight",
+                Length = 2.0,
+                Genres = new List<Genres>()
+                {
+                    Genres.Fantasy,
+                    Genres.Action
+                }
+            },
+            new ()
+            {
+                Title = "scary movie",
+                Description = " derp",
+                Length = 2.0,
+                Genres = new List<Genres>()
+                {
+                    Genres.Horror,
+                    Genres.Comedy
+                }
+            },
+            new ()
+            {
+                Title = "The Pianist",
+                Description = " very sad",
+                Length = 2.0,
+                Genres = new List<Genres>()
+                {
+                    Genres.Drama,
+                }
+            },
+
+            new ()
+            {
+                Title = "Wall-e",
+                Description = " animated pixar movie",
+                Length = 2.0,
+                Genres = new List<Genres>()
+                {
+                    Genres.Comedy,
+                    Genres.SciFi
+                }
+            },
+
         };
     }
 }

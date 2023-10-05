@@ -9,10 +9,13 @@ Directory.CreateDirectory(directory);
 var path = Path.Combine(directory, "Demo.txt");
 
 //File.Exists kan användas för att kontrollera ifall en fil finns på en given sökväg
+
+
+
+
 if (!File.Exists(path))
 {
-    //StreamWriter används för att öppna en fil och skriva till den.
-    //nyckelordet using används här för att på ett säkert sätt stänga den öppnade filen så den inte är låst efter operationen
+
     using StreamWriter sw = new StreamWriter(path);
     foreach (var movie in movieDb.Movies)
     {
@@ -22,8 +25,14 @@ if (!File.Exists(path))
     sw.Close();
 }
 
-if (File.Exists(path))
+
+List<Movie> GetMoviesFromFile(string path)
 {
+    if (!File.Exists(path))
+    {
+        return new List<Movie>();
+    }
+
     List<Movie> movieList = new List<Movie>();
     string? line = "";
 
@@ -32,10 +41,9 @@ if (File.Exists(path))
     string description = "";
     string genres = "";
 
-    //StreamReader används för att öppna en fil och läsa från den.
-    //nyckelordet using används här för att på ett säkert sätt stänga den öppnade filen så den inte är låst efter operationen
     using StreamReader sr = new StreamReader(path);
-    //ReadLine() läser nästa rad i filen
+
+
     while ((line = sr.ReadLine()) != null)
     {
         if (line.StartsWith("Title: "))
@@ -80,29 +88,49 @@ if (File.Exists(path))
         }
     }
 
-    var sciFiMovieTitles = movieList
-        .Where(m=> m.Genres.Any(g => g == Genres.SciFi))
-        .Select(m=> m.Title);
+    return movieList;
 
-    var sciFiMovieLengths = movieList
-        .Where(m => m.Genres.Any(g => g == Genres.SciFi))
-        .Select(m => m.Length);
-
-    foreach (var sciFiMovieTitle in sciFiMovieTitles)
-    {
-        Console.WriteLine(sciFiMovieTitle);
-    }
-
-    Console.WriteLine("---------------------------------");
-
-    foreach (var movie in movieList)
-    {
-        foreach (var movieGenre in movie.Genres)
-        {
-            if (movieGenre == Genres.SciFi)
-            {
-                Console.WriteLine(movie.Title);
-            }
-        }
-    }
 }
+
+
+Console.WriteLine("---------------------------------");
+Console.WriteLine("---------------------------------");
+
+var dict = new Dictionary<Genres, List<Movie>>()
+    {
+        { Genres.SciFi, movieDb.Movies.Where(m => m.Genres.Any(g => g == Genres.SciFi)).ToList() },
+        {Genres.Action, movieDb.Movies.Where(m => m.Genres.Any(g => g == Genres.Action)).ToList() },
+          {Genres.Comedy, movieDb.Movies.Where(m => m.Genres.Any(g => g == Genres.Comedy)).ToList()} ,
+         {Genres.Drama, movieDb.Movies.Where(m => m.Genres.Any(g => g == Genres.Drama)).ToList()},
+          {Genres.Horror,movieDb.Movies.Where(m => m.Genres.Any(g => g == Genres.Horror)).ToList()},
+         {Genres.Thriller, movieDb.Movies.Where(m => m.Genres.Any(g => g == Genres.Thriller)).ToList()},
+          {Genres.Fantasy, movieDb.Movies.Where(m => m.Genres.Any(g => g == Genres.Fantasy)).ToList()},
+          {Genres.Crime, movieDb.Movies.Where(m => m.Genres.Any(g => g == Genres.Crime)).ToList()},
+    };
+
+
+
+foreach (var genreList in dict)
+{
+    using var streamWriter = new StreamWriter(genreList.Key.ToString() + ".Juice");
+
+    foreach (var movie in genreList.Value)
+    {
+        streamWriter.Write(movie.ToString() + '\n');
+    }
+
+}
+
+
+
+var movies = GetMoviesFromFile("Action.juice");
+
+
+foreach (var item in movies)
+{
+    Console.WriteLine(item.Title);
+}
+
+
+//var SciFiMovies =
+
